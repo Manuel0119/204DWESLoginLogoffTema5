@@ -4,6 +4,7 @@ if (isset($_REQUEST['Detalle'])) {
     die();
 }
 if (isset($_REQUEST['Salir'])) {
+    session_destroy();
     header('Location: ./login.php');
     die();
 }
