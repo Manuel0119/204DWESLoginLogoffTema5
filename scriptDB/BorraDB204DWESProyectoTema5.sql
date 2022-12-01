@@ -4,6 +4,6 @@
     Fecha-última-revisión: 27-11-2022.
 */
 -- Borrar la base de datos DB204DWESProyectoTema5.
-drop database if exists DB204DWESProyectoTema5;
+drop database if exists DB204DWESLoginLogoffTema5;
 -- Borrar el usuario user204DWESProyectoTema5.
-drop user if exists 'user204DWESProyectoTema5'@'%';
+drop user if exists 'user204DWESLoginLogoffTema5'@'%';

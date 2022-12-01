@@ -3,7 +3,7 @@
     Utilidad: Este programa consiste en cargar datos en la tabla Departamento y en la tabla Usuario.
     Fecha-última-revisión: 24-11-2022.
 */
-use DB204DWESProyectoTema5;
+use DB204DWESLoginLogoffTema5;
 -- Inserción de datos en la tabla Departamento.
 insert into T02_Departamento values
 ("INF","Departamento de Informatica",now(),3500.5,null),

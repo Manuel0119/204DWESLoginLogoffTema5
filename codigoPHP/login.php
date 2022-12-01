@@ -1,7 +1,51 @@
 <?php
+require_once '../core/221024ValidacionFormularios.php';
+require_once '../conf/confDB.php';
+$entradaOk = true;
+//Array de errores para validacion de entrada del formulario.
+$aErrores = [
+    'usuario' => null,
+    'password' => null
+];
+//Array de respuestas para guardar las respuestas del formulario.
+$aRespuestas = [
+    'usuario' => null,
+    'password' => null
+];
+$consultaPorCodigo = <<< sq2
+            select * from T01_Usuario where T01_CodUsuario=:codigo;
+        sq2;
+$actualizacionNumConexiones = <<< sq3
+            update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codigo;
+        sq3;
+//Comprobamos si ha pulsado el botón de Iniciar Sesion
 if (isset($_REQUEST['IniciarSesion'])) {
-    header('Location: ./programa.php');
-    die();
+    $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 8, obligatorio: 1);
+    $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 255, obligatorio: 1);
+    $queryConsultaPorCodigo = $miDB->prepare($consultaPorCodigo);
+    $queryConsultaPorCodigo->bindParam(':codigo', $_REQUEST['usuario']);
+    $queryConsultaPorCodigo->execute();
+    $oConsultaPorCodigo = $queryConsultaPorCodigo->fetchObject();
+    //Comprobación de contraseña correcta
+    if (!$oConsultaPorCodigo || $oConsultaPorCodigo->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
+        
+    } else {
+        //Actualización del número de conexiones
+        $queryActualizacionNumConexiones = $miDB->prepare($actualizacionNumConexiones);
+        $queryActualizacionNumConexiones->bindParam(':codigo', $_SERVER['PHP_AUTH_USER']);
+        $queryActualizacionNumConexiones->execute();
+        echo "Bienvenido  $oConsultaPorCodigo->T01_DescUsuario<br/>";
+        echo "Esta es la $oConsultaPorCodigo->T01_NumConexiones vez que te conectas<br/>";
+        if (($oConsultaPorCodigo->T01_NumConexiones) > 1) {
+            echo "Usted se conectó por última vez $oConsultaPorCodigo->T01_FechaHoraUltimaConexion";
+        } else {
+            
+        }
+    }
+//    header('Location: ./programa.php');
+//    die();
+} else {
+    $entradaOk = false;
 }
 ?>
 <!DOCTYPE html>
@@ -9,7 +53,7 @@ if (isset($_REQUEST['IniciarSesion'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 29-11-2022.
+        Fecha-última-revisión: 01-12-2022.
     -->
     <head>
         <meta charset="UTF-8">

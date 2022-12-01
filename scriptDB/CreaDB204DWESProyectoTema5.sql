@@ -4,8 +4,8 @@
     Fecha-última-revisión: 24-11-2022.
 */
 -- Creación de la base de datos.
-create database DB204DWESProyectoTema5;
-use DB204DWESProyectoTema5;
+create database DB204DWESLoginLogoffTema5;
+use DB204DWESLoginLogoffTema5;
 -- Creación de la tabla Departamento.
 create table if not exists T02_Departamento(
     T02_CodDepartamento varchar(3) primary key not null,
@@ -25,7 +25,7 @@ create table if not exists T01_Usuario(
     T01_ImagenUsuario MEDIUMBLOB null
 )engine=Innodb;
 -- Creación del usuario 'user204DWESProyectoTema5'.
-create user 'user204DWESProyectoTema5'@'%' identified by 'paso';
+create user 'user204DWESLoginLogoffTema5'@'%' identified by 'paso';
 -- Dar permisos al usuario 'usuarioDAW204DBDepartamentos'.
-grant all on DB204DWESProyectoTema5.* to 'user204DWESProyectoTema5'@'%';
+grant all on DB204DWESLoginLogoffTema5.* to 'user204DWESLoginLogoffTema5'@'%';
     
