@@ -7,31 +7,31 @@ $aErrores = [
     'usuario' => null,
     'password' => null
 ];
-$buscaUsuarioPorCodigo = <<< sq2
+$SQLUsuarioPorCodigo = <<< sq2
     select * from T01_Usuario where T01_CodUsuario=:codUsuario;
 sq2;
-$actualizacionConexiones = <<< sq3
-    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
-sq3;
+//$actualizacionConexiones = <<< sq3
+//    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
+//sq3;
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['IniciarSesion'])) {
-        //Crear un objeto PDO pasándole las constantes definidas como parametros.
+        //VALIDACIÓN DE ENTRADA
         $miDB = new PDO(DSN, USER, PASSWORD);
         $aErrores['usuario'] = validacionFormularios::comprobarAlfabetico($_REQUEST['usuario'], 8, obligatorio: 1);
-        $aErrores['password'] = validacionFormularios::validarPassword($_REQUEST['password'], 255, obligatorio: 1);
-        $queryConsultaPorCodigo = $miDB->prepare($buscaUsuarioPorCodigo);
+        $aErrores['password'] = validacionFormularios::comprobarAlfabetico($_REQUEST['password'], 255, obligatorio: 1);
+        foreach ($aErrores as $mensajeError) {
+            if ($mensajeError != null) {
+                $entradaOk = false;
+            }
+        };
+        $queryConsultaPorCodigo = $miDB->prepare($SQLUsuarioPorCodigo);
         $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
         $queryConsultaPorCodigo->execute();
         $oConsultaPorCodigo = $queryConsultaPorCodigo->fetchObject();
         //Comprobación de contraseña correcta
         if (!$oConsultaPorCodigo || $oConsultaPorCodigo->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
             $entradaOk = false;
-            foreach ($aErrores as $claveError => $mensajeError) {
-                if ($mensajeError != null) {
-                    $entradaOk = false;
-                }
-            };
         } else {
             //Actualizacion posterior
         }

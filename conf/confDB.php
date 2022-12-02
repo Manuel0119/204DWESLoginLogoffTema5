@@ -8,18 +8,18 @@
 /*
 //ENTORNO DESARROLLO CASA
 // IP del servidor y Nombre de la base de datos
-define("DSN", 'mysql:host=192.168.1.204;dbname=DB204DWESProyectoTema5');
+define("DSN", 'mysql:host=192.168.1.204;dbname=DB204DWESLoginLogoffTema5');
 // Usuario con el que se conecta
-define("USER", 'user204DWESProyectoTema5');
+define("USER", 'user204DWESLoginLogoffTema5');
 // Contraseña con la que conectarse a la base de datos 
 define("PASSWORD", 'paso');
 */
 
 //ENTORNO DE DESARROLLO
 // IP del servidor y Nombre de la base de datos
-define("DSN", 'mysql:host=192.168.20.19;dbname=DB204DWESProyectoTema5');
+define("DSN", 'mysql:host=192.168.20.19;dbname=DB204DWESLoginLogoffTema5');
 // Usuario con el que se conecta 
-define("USER", 'user204DWESProyectoTema5');
+define("USER", 'user204DWESLoginLogoffTema5');
 // Contraseña con la que conectarse a la base de datos 
 define("PASSWORD", 'paso');
 /*
