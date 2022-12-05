@@ -22,6 +22,7 @@ define("DSN", 'mysql:host=192.168.20.19;dbname=DB204DWESLoginLogoffTema5');
 define("USER", 'user204DWESLoginLogoffTema5');
 // Contraseña con la que conectarse a la base de datos 
 define("PASSWORD", 'paso');
+
 /*
 //ENTORNO DE EXPLOTACION 1&1
 // IP del servidor y Nombre de la base de datos

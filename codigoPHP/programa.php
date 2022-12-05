@@ -4,14 +4,14 @@ if (is_null($_SESSION['usuarioDAW204LoginLogoffTema5'])) {
     header('Location: login.php');
     exit;
 }
-if (isset($_REQUEST['salir'])) {
-    $_SESSION['usuarioDAW204LoginLogoffTema5'] = null;
-    session_destroy();
+if (isset($_REQUEST['Salir'])) {
+    $_SESSION['usuarioDAW201AppLoginLogoff']=null;
     header('Location: login.php');
+    session_destroy();
     exit;
 }
 if (isset($_REQUEST['Detalle'])) {
-    header('Location: ./detalle.php');
+    header('Location: detalle.php');
     die;
 }
 ?>
