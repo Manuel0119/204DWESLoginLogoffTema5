@@ -10,9 +10,9 @@ $aErrores = [
 $SQLUsuarioPorCodigo = <<< sq2
     select * from T01_Usuario where T01_CodUsuario=:codUsuario;
 sq2;
-//$actualizacionConexiones = <<< sq3
-//    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
-//sq3;
+$SQLActualizacionConexionesUsuario = <<< sq3
+    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
+sq3;
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['IniciarSesion'])) {
@@ -32,10 +32,7 @@ try {
         //Comprobación de contraseña correcta
         if (!$oConsultaPorCodigo || $oConsultaPorCodigo->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
             $entradaOk = false;
-        } else {
-            //Actualizacion posterior
         }
-//   
     } else {
         $entradaOk = false;
     }
@@ -46,9 +43,21 @@ try {
     unset($miDB);
 }
 if ($entradaOk) {
+    //Actualización del número de conexiones
+    try {
+        $miDB = new PDO(DSN, USER, PASSWORD);
+        $queryActualizacionNumConexiones = $miDB->prepare($SQLActualizacionConexionesUsuario);
+        $queryActualizacionNumConexiones->bindParam(':codigo', $_SERVER['PHP_AUTH_USER']);
+        $queryActualizacionNumConexiones->execute();
+    } catch (PDOException $excepcion) {
+        echo 'Error: ' . $excepcion->getMessage() . "<br>";
+        echo 'Código de error: ' . $excepcion->getCode() . "<br>";
+    }finally {
+        unset($miDB);
+    }
     session_start();
-    $_SESSION['usuarioDAW204LoginLogoffTema5'] = $_REQUEST['usuario'];
-    header('Location: ./programa.php');
+    $_SESSION['usuarioDAW204LoginLogoffTema5'] = $oConsultaPorCodigo;
+    header('Location: programa.php');
     die();
 } else {
     ?>

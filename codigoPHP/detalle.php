@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (is_null($_SESSION['usuarioDAW204LoginLogoffTema5'])) {
+    header('Location: login.php');
+    exit;
+}
 if (isset($_REQUEST['Volver'])) {
     header('Location: ./programa.php');
     die();
@@ -60,195 +65,204 @@ if (isset($_REQUEST['Volver'])) {
         <table class="tablaMostrar">
             <?php
             //Comprobación de que la variable no sea null o vacia.
-            session_start();
             if (is_null($_SESSION) || empty($_SESSION)) {
                 print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_SESSION está vacía</th></thead>';
             } else {
                 //Recorremos la variable imprimiendo la clave y el valor del array.
                 echo '<th colspan="2" style="background: #CCC;">$_SESSION';
                 foreach ($_SESSION as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
-                }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_COOKIE-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_COOKIE) || empty($_COOKIE)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_COOKIE está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_COOKIE';
-                foreach ($_COOKIE as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
-                }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_SERVER-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_SERVER) || empty($_SERVER)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_SERVER está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_SERVER';
-                foreach ($_SERVER as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
-                }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$GLOBALS-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($GLOBALS) || empty($GLOBALS)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_SERVER está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$GLOBALS';
-                foreach ($GLOBALS as $clave => $valor) {
-                    if ($clave == '_SERVER') {
-                        print("<tr>");
-                        print '<td>';
-                        print_r($clave);
-                        print '</td>';
-                        print '<td>';
-                        echo '<table>';
-                        foreach ($_SERVER as $claveServer => $valorServer) {
-                            echo '<tr>';
-                            print '<td>';
-                            print_r($claveServer);
-                            print '</td>';
-                            print '<td>';
-                            print_r($valorServer);
-                            print '</td>';
-                            echo '</tr>';
+                    echo "<tr>";
+                    echo '<td style="text-align:center;">'.$clave.'</td>';
+                    if (is_object($valor)) {
+                        echo '<td><table style="width: 100%;"><th>Clave</th><th>valor</th>';
+                        foreach ($valor as $c => $v) {
+                            echo "<tr><th>$c</th>";
+                            echo "<td>$v</td></tr>";
                         }
-                        echo '</table>';
-                        print '</td>';
+                        echo"</table></td>";
                     } else {
+                        echo "<td>" . $valor . "</td>";
+                    }echo "</tr>";
+                }
+                echo "</table>";
+                echo "</br>";
+            }
+                ?>
+            </table>
+            <!--$_COOKIE-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_COOKIE) || empty($_COOKIE)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_COOKIE está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_COOKIE';
+                    foreach ($_COOKIE as $clave => $valor) {
                         print("<tr>");
-                        print '<td>';
-                        print_r($clave);
-                        print '</td>';
-                        print '<td>';
-                        print_r($valor);
-                        print '</td>';
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
                     }
-                    print("</tr>");
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_FILES-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_FILES) || empty($_FILES)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_FILES está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_FILES';
-                foreach ($_FILES as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_SERVER-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_SERVER) || empty($_SERVER)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_SERVER está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_SERVER';
+                    foreach ($_SERVER as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_POST-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_POST) || empty($_POST)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_POST está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_POST';
-                foreach ($_POST as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
+                echo '</th>';
+                ?>
+            </table>
+            <!--$GLOBALS-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($GLOBALS) || empty($GLOBALS)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_SERVER está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$GLOBALS';
+                    foreach ($GLOBALS as $clave => $valor) {
+                        if ($clave == '_SERVER') {
+                            print("<tr>");
+                            print '<td>';
+                            print_r($clave);
+                            print '</td>';
+                            print '<td>';
+                            echo '<table>';
+                            foreach ($_SERVER as $claveServer => $valorServer) {
+                                echo '<tr>';
+                                print '<td>';
+                                print_r($claveServer);
+                                print '</td>';
+                                print '<td>';
+                                print_r($valorServer);
+                                print '</td>';
+                                echo '</tr>';
+                            }
+                            echo '</table>';
+                            print '</td>';
+                        } else {
+                            print("<tr>");
+                            print '<td>';
+                            print_r($clave);
+                            print '</td>';
+                            print '<td>';
+                            print_r($valor);
+                            print '</td>';
+                        }
+                        print("</tr>");
+                    }
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_GET-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_GET) || empty($_GET)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_GET está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_GET';
-                foreach ($_GET as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_FILES-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_FILES) || empty($_FILES)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_FILES está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_FILES';
+                    foreach ($_FILES as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_REQUEST-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_REQUEST) || empty($_REQUEST)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_REQUEST está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_REQUEST';
-                foreach ($_REQUEST as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_POST-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_POST) || empty($_POST)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_POST está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_POST';
+                    foreach ($_POST as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <!--$_ENV-->
-        <table class="tablaMostrar">
-            <?php
-            //Comprobación de que la variable no sea null o vacia.
-            if (is_null($_ENV) || empty($_ENV)) {
-                print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_ENV está vacía</th></thead>';
-            } else {
-                //Recorremos la variable imprimiendo la clave y el valor del array.
-                echo '<th colspan="2" style="background: #CCC;">$_ENV';
-                foreach ($_ENV as $clave => $valor) {
-                    print("<tr>");
-                    printf("<td>%s</td><td>%s</td>", $clave, $valor);
-                    print("</tr>");
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_GET-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_GET) || empty($_GET)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_GET está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_GET';
+                    foreach ($_GET as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
                 }
-            }
-            echo '</th>';
-            ?>
-        </table>
-        <div>
-            <?php
-            phpinfo();
-            ?>
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_REQUEST-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_REQUEST) || empty($_REQUEST)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_REQUEST está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_REQUEST';
+                    foreach ($_REQUEST as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
+                }
+                echo '</th>';
+                ?>
+            </table>
+            <!--$_ENV-->
+            <table class="tablaMostrar">
+                <?php
+                //Comprobación de que la variable no sea null o vacia.
+                if (is_null($_ENV) || empty($_ENV)) {
+                    print '<thead><th  style="border:none;color:red;text-align:center;">La variable superglobal $_ENV está vacía</th></thead>';
+                } else {
+                    //Recorremos la variable imprimiendo la clave y el valor del array.
+                    echo '<th colspan="2" style="background: #CCC;">$_ENV';
+                    foreach ($_ENV as $clave => $valor) {
+                        print("<tr>");
+                        printf("<td>%s</td><td>%s</td>", $clave, $valor);
+                        print("</tr>");
+                    }
+                }
+                echo '</th>';
+                ?>
+            </table>
+            <div>
+                <?php
+                phpinfo();
+                ?>
         </div>
         <footer>
             <div><a href="../../204DWESProyectoDWES/indexProyectoDWES.php"><img style="padding: 0em 1em;" src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>

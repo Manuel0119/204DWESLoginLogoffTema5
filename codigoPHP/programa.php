@@ -1,12 +1,18 @@
 <?php
+session_start();
+if (is_null($_SESSION['usuarioDAW204LoginLogoffTema5'])) {
+    header('Location: login.php');
+    exit;
+}
+if (isset($_REQUEST['salir'])) {
+    $_SESSION['usuarioDAW204LoginLogoffTema5'] = null;
+    session_destroy();
+    header('Location: login.php');
+    exit;
+}
 if (isset($_REQUEST['Detalle'])) {
     header('Location: ./detalle.php');
-    die();
-}
-if (isset($_REQUEST['Salir'])) {
-    session_destroy();
-    header('Location: ./login.php');
-    die();
+    die;
 }
 ?>
 <!DOCTYPE html>
@@ -34,7 +40,7 @@ if (isset($_REQUEST['Salir'])) {
                 justify-content: center;
             }
             .codigophp {
-                left: 48%;
+                left: 45%;
             }
             .volver{
                 height: 35px;
@@ -47,6 +53,17 @@ if (isset($_REQUEST['Salir'])) {
             <h2>Programa</h2>
         </div>
         <div class="codigophp">
+            <table>
+                <?php
+                echo "Bienvenido " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_DescUsuario . "<br/>";
+                echo "Esta es la " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
+                if (($_SESSION['usuarioDAW204LoginLogoffTema5']->T01_NumConexiones) > 1) {
+                    echo "Usted se conectó por última vez " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_FechaHoraUltimaConexion;
+                } else {
+                    
+                }
+                ?>
+            </table>
             <form name="ejercicio21" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <table class="formulario">
                     <tr>
