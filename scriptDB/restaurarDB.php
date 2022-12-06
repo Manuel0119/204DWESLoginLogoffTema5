@@ -23,7 +23,7 @@
         </div>
         <div class="codigophp" style="margin: 3em;left: 0; position: initial">
             <?php
-            require_once '../config/confDBPDO.php';
+            require_once '../conf/confDB.php';
             try {
                 //Establecimiento de la conexión 
                 $miDB = new PDO(DSN, USER, PASSWORD);

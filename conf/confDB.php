@@ -3,7 +3,7 @@
  * Fichero de configuracion que contiene la conexion a la base de datos
  * @author Manuel Martín Alonso
  * @since:  22-11-2022
- * Última modificación: 24-11-2022
+ * Última modificación: 06-12-2022
  */
 /*
 //ENTORNO DESARROLLO CASA
