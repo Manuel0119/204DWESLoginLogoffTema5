@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-        Autor: Manuel Martín Alonso.
-        Utilidad: Este programa consiste en construir una pagina web que cargue registros en la tabla Departamento desde un array departamentosnuevos
-                  utilizando una consulta preparada.
-        Fecha-última-revisión: 22-11-2022.
+    <!--
+            Autor: Manuel Martín Alonso.
+            Utilidad: Este programa consiste en construir una pagina web que cargue registros en la tabla Departamento desde un array departamentosnuevos
+                      utilizando una consulta preparada.
+            Fecha-última-revisión: 22-11-2022.
     -->
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ManuelMartínAlonso</title>
-    <link rel="stylesheet" href="../webroot/css/estilos.css">
-    <link rel="icon" type="image/ico" sizes="32x32" href="../webroot/favicon.ico">
-</head>
-<body>
-    <div class="encabezado">
-        <h2>
-            Script de creacion en 1&1.
-        </h2>
-    </div>
-    <div class="codigophp" style="margin: 3em;left: 0; position: initial">
-        <?php
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ManuelMartínAlonso</title>
+        <link rel="stylesheet" href="../webroot/css/estilos.css">
+        <link rel="icon" type="image/ico" sizes="32x32" href="../webroot/favicon.ico">
+    </head>
+    <body>
+        <div class="encabezado">
+            <h2>
+                Script de creacion en 1&1.
+            </h2>
+        </div>
+        <div class="codigophp" style="margin: 3em;left: 0; position: initial">
+            <?php
             require_once '../conf/confDB.php';
             try {
                 //Establecimiento de la conexión 
@@ -44,14 +44,15 @@
                 // Cierre de la conexión.
                 unset($mydb);
             }
-        ?>
-    </div>
-    <a href="../indexProyectoTema4.php"><img src="../webroot/volver.png" alt="volver" class="volver2" /></a>
-    <footer>
-        <div><a href="../indexProyectoTema4.php"><img src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>
-        2022-23 Manuel Martín Alonso. ©Todos los derechos reservados.
-        <a href="https://github.com/Manuel0119" target="_blank"><img src="../webroot/github-logo.png" alt="github" id="g"></a>
-        <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png" alt="curriculum" id="curricu"></a>
-    </footer>
-</body>
+            ?>
+        </div>
+        <a href="../204DWESProyectoDWES/indexProyectoDWES.php"><img src="../webroot/volver.png" alt="volver" class="volver2" /></a>
+        <footer>
+            <div><a href="../204DWESProyectoDWES/indexProyectoDWES.php"><img style="padding: 0em 1em;" src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>
+            2022-23 Manuel Martín Alonso. ©Todos los derechos reservados.
+            <a href="https://github.com/Manuel0119/204DWESLoginLogoffTema5" target="_blank"><img src="../webroot/github-logo.png" alt="github" id="g"></a>
+            <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png" alt="curriculum" id="curricu"></a>
+            <a href="../204DWESProyectoDWES/indexProyectoDWES.php"><img src="../webroot/volver.png" alt="volver" class="volver"/></a>
+        </footer>
+    </body>
 </html>

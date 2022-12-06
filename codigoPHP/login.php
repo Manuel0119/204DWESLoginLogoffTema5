@@ -50,7 +50,7 @@ if ($entradaOk) {
     try {
         $miDB = new PDO(DSN, USER, PASSWORD);
         $queryActualizacionNumConexiones = $miDB->prepare($SQLActualizacionConexionesUsuario);
-        $queryActualizacionNumConexiones->bindParam(':codigo', $_SERVER['PHP_AUTH_USER']);
+        $queryActualizacionNumConexiones->bindParam(':codigoUsuario', $_SERVER['PHP_AUTH_USER']);
         $queryActualizacionNumConexiones->execute();
         $queryConsultaPorCodigo = $miDB->prepare($SQLUsuarioPorCodigo);
         $queryConsultaPorCodigo->bindParam(':codigoUsuario', $_REQUEST['usuario']);
@@ -65,7 +65,7 @@ if ($entradaOk) {
     session_start();
     $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
     $_SESSION['UltimaConexionDAW204LoginLogoffTema5']=$ultimaConexion;
-    header('Location: programa.php');
+    header('Location: ./programa.php');
     die();
 } else {
     ?>

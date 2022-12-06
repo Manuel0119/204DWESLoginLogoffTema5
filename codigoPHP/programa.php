@@ -1,18 +1,18 @@
 <?php
 session_start();
 if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
-    header('Location: login.php');
+    header('Location: ./login.php');
     exit;
 }
 if (isset($_REQUEST['Salir'])) {
     $_SESSION['user204DWESLoginLogoffTema5']=null;
-    header('Location: login.php');
+    header('Location: ./login.php');
     session_destroy();
     exit;
 }
 if (isset($_REQUEST['Detalle'])) {
-    header('Location: detalle.php');
-    die;
+    header('Location: ./detalle.php');
+    exit;
 }
 ?>
 <!DOCTYPE html>
