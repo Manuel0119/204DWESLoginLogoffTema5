@@ -60,10 +60,8 @@
         <footer>
             <div><a href="../indexProyectoTema4.php"><img src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>
             2022-23 Manuel Martín Alonso. ©Todos los derechos reservados.
-            <a href="https://github.com/Manuel0119" target="_blank"><img src="../webroot/github-logo.png" alt="github"
-                                                                         id="g"></a>
-            <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png"
-                                                                             alt="curriculum" id="curricu"></a>
+            <a href="https://github.com/Manuel0119" target="_blank"><img src="../webroot/github-logo.png" alt="github" id="g"></a>
+            <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png" alt="curriculum" id="curricu"></a>
         </footer>
     </body>
 

@@ -1,11 +1,11 @@
 <?php
 session_start();
-if (is_null($_SESSION['usuarioDAW204LoginLogoffTema5'])) {
+if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
     header('Location: login.php');
     exit;
 }
 if (isset($_REQUEST['Salir'])) {
-    $_SESSION['usuarioDAW201AppLoginLogoff']=null;
+    $_SESSION['user204DWESLoginLogoffTema5']=null;
     header('Location: login.php');
     session_destroy();
     exit;
@@ -55,10 +55,10 @@ if (isset($_REQUEST['Detalle'])) {
         <div class="codigophp">
             <table>
                 <?php
-                echo "Bienvenido " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_DescUsuario . "<br/>";
-                echo "Esta es la " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
-                if (($_SESSION['usuarioDAW204LoginLogoffTema5']->T01_NumConexiones) > 1) {
-                    echo "Usted se conectó por última vez " . $_SESSION['usuarioDAW204LoginLogoffTema5']->T01_FechaHoraUltimaConexion;
+                echo "Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario . "<br/>";
+                echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
+                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
+                    echo "Usted se conectó por última vez " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion;
                 } else {
                     
                 }

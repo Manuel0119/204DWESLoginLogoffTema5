@@ -8,11 +8,12 @@ $aErrores = [
     'password' => null
 ];
 $SQLUsuarioPorCodigo = <<< sq2
-    select * from T01_Usuario where T01_CodUsuario=:codUsuario;
+    select * from T01_Usuario where T01_CodUsuario=:codigoUsuario;
 sq2;
 $SQLActualizacionConexionesUsuario = <<< sq3
-    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codUsuario;
+    update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codigoUsuario;
 sq3;
+$ultimaConexion=null;
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['IniciarSesion'])) {
@@ -26,12 +27,14 @@ try {
             }
         };
         $queryConsultaPorCodigo = $miDB->prepare($SQLUsuarioPorCodigo);
-        $queryConsultaPorCodigo->bindParam(':codUsuario', $_REQUEST['usuario']);
+        $queryConsultaPorCodigo->bindParam(':codigoUsuario', $_REQUEST['usuario']);
         $queryConsultaPorCodigo->execute();
         $oConsultaPorCodigo = $queryConsultaPorCodigo->fetchObject();
         //Comprobación de contraseña correcta
         if (!$oConsultaPorCodigo || $oConsultaPorCodigo->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
             $entradaOk = false;
+        }else {
+           $ultimaConexion=$oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
         }
     } else {
         $entradaOk = false;
@@ -49,6 +52,10 @@ if ($entradaOk) {
         $queryActualizacionNumConexiones = $miDB->prepare($SQLActualizacionConexionesUsuario);
         $queryActualizacionNumConexiones->bindParam(':codigo', $_SERVER['PHP_AUTH_USER']);
         $queryActualizacionNumConexiones->execute();
+        $queryConsultaPorCodigo = $miDB->prepare($SQLUsuarioPorCodigo);
+        $queryConsultaPorCodigo->bindParam(':codigoUsuario', $_REQUEST['usuario']);
+        $queryConsultaPorCodigo->execute();
+        $oConsultaPorCodigo = $queryConsultaPorCodigo->fetchObject();
     } catch (PDOException $excepcion) {
         echo 'Error: ' . $excepcion->getMessage() . "<br>";
         echo 'Código de error: ' . $excepcion->getCode() . "<br>";
@@ -56,7 +63,8 @@ if ($entradaOk) {
         unset($miDB);
     }
     session_start();
-    $_SESSION['usuarioDAW204LoginLogoffTema5'] = $oConsultaPorCodigo;
+    $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
+    $_SESSION['UltimaConexionDAW204LoginLogoffTema5']=$ultimaConexion;
     header('Location: programa.php');
     die();
 } else {

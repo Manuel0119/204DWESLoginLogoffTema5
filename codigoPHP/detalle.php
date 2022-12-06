@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (is_null($_SESSION['usuarioDAW204LoginLogoffTema5'])) {
+if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
     header('Location: login.php');
     exit;
 }
