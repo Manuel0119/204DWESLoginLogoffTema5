@@ -23,7 +23,7 @@ if (isset($_REQUEST['Detalle'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 05-11-2022.
+        Fecha-última-revisión: 07-12-2022.
     -->
     <head>
         <meta charset="UTF-8">

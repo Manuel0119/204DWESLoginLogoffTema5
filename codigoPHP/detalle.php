@@ -16,7 +16,7 @@ if (isset($_REQUEST['Volver'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 29-11-2022.
+        Fecha-última-revisión: 07-12-2022.
     -->
     <head>
         <meta charset="UTF-8">
