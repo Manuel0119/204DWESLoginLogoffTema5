@@ -50,6 +50,12 @@ if (isset($_REQUEST['Volver'])) {
             form{
                 margin-top: 1rem;
             }
+            .tablaMostrar {
+                width: 65%;
+                text-align: center;
+                margin: 0 auto;
+                margin-bottom: 20px;
+            }
         </style>
     </head>
     <body>
