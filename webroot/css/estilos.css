@@ -117,6 +117,7 @@ table{
 }
 td{
     padding: 10px;
+    font-size: 90%;
 }
 tr td:nth-of-type(2), td:nth-of-type(3){
    text-align: center;

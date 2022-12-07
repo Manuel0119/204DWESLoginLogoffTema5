@@ -13,7 +13,6 @@ sq2;
 $SQLActualizacionConexionesUsuario = <<< sq3
     update T01_Usuario set T01_NumConexiones=T01_NumConexiones+1,T01_FechaHoraUltimaConexion=now() where T01_CodUsuario=:codigoUsuario;
 sq3;
-$ultimaConexion=null;
 //Comprobamos si ha pulsado el botón de Iniciar Sesion
 try {
     if (isset($_REQUEST['IniciarSesion'])) {
@@ -30,11 +29,9 @@ try {
         $queryConsultaPorCodigo->bindParam(':codigoUsuario', $_REQUEST['usuario']);
         $queryConsultaPorCodigo->execute();
         $oConsultaPorCodigo = $queryConsultaPorCodigo->fetchObject();
-        //Comprobación de contraseña correcta
+        //Comprobación de usuario correcto
         if (!$oConsultaPorCodigo || $oConsultaPorCodigo->T01_Password != hash('sha256', ($_REQUEST['usuario'] . $_REQUEST['password']))) {
             $entradaOk = false;
-        }else {
-           $ultimaConexion=$oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
         }
     } else {
         $entradaOk = false;
@@ -46,11 +43,12 @@ try {
     unset($miDB);
 }
 if ($entradaOk) {
+    $_SESSION['fechaHoraUltimaConexionAnterior']=$oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
     //Actualización del número de conexiones
     try {
         $miDB = new PDO(DSN, USER, PASSWORD);
         $queryActualizacionNumConexiones = $miDB->prepare($SQLActualizacionConexionesUsuario);
-        $queryActualizacionNumConexiones->bindParam(':codigoUsuario', $_SERVER['PHP_AUTH_USER']);
+        $queryActualizacionNumConexiones->bindParam(':codigoUsuario', $_REQUEST['usuario']);
         $queryActualizacionNumConexiones->execute();
         $queryConsultaPorCodigo = $miDB->prepare($SQLUsuarioPorCodigo);
         $queryConsultaPorCodigo->bindParam(':codigoUsuario', $_REQUEST['usuario']);
@@ -64,7 +62,6 @@ if ($entradaOk) {
     }
     session_start();
     $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
-    $_SESSION['UltimaConexionDAW204LoginLogoffTema5']=$ultimaConexion;
     header('Location: ./programa.php');
     die();
 } else {
@@ -74,7 +71,7 @@ if ($entradaOk) {
         <!--
             Autor: Manuel Martín Alonso.
             Utilidad: Este programa consiste en crear un login.
-            Fecha-última-revisión: 01-12-2022.
+            Fecha-última-revisión: 07-12-2022.
         -->
         <head>
             <meta charset="UTF-8">

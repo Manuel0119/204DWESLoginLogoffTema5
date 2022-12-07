@@ -1,15 +1,18 @@
 <?php
 session_start();
+//Comprobación de si ha pasado por el login
 if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
     header('Location: ./login.php');
     exit;
 }
+//Comprobar si se ha pulsado el botón de salir
 if (isset($_REQUEST['Salir'])) {
     $_SESSION['user204DWESLoginLogoffTema5']=null;
     header('Location: ./login.php');
     session_destroy();
     exit;
 }
+//Comprobar si se ha pulsado el botón de detalle
 if (isset($_REQUEST['Detalle'])) {
     header('Location: ./detalle.php');
     exit;
