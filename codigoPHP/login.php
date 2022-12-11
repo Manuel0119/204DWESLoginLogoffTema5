@@ -43,7 +43,8 @@ try {
     unset($miDB);
 }
 if ($entradaOk) {
-    $_SESSION['fechaHoraUltimaConexionAnterior']=$oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
+    session_start();
+    $_SESSION['fechaHoraUltimaConexionAnterior'] = $oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
     //Actualización del número de conexiones
     try {
         $miDB = new PDO(DSN, USER, PASSWORD);
@@ -57,12 +58,13 @@ if ($entradaOk) {
     } catch (PDOException $excepcion) {
         echo 'Error: ' . $excepcion->getMessage() . "<br>";
         echo 'Código de error: ' . $excepcion->getCode() . "<br>";
-    }finally {
+    } finally {
         unset($miDB);
     }
-    session_start();
+    $fechaActual = new DateTime('now');
+    setcookie('idioma', $_REQUEST['idioma'], $fechaActual->add(new DateInterval("PT30M")));
     $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
-    header('Location: ./programa.php');
+    header('Location: programa.php');
     die();
 } else {
     ?>
@@ -71,7 +73,7 @@ if ($entradaOk) {
         <!--
             Autor: Manuel Martín Alonso.
             Utilidad: Este programa consiste en crear un login.
-            Fecha-última-revisión: 07-12-2022.
+            Fecha-última-revisión: 11-12-2022.
         -->
         <head>
             <meta charset="UTF-8">
@@ -114,6 +116,16 @@ if ($entradaOk) {
                         <tr>
                             <td style="text-align: center" colspan="3">
                                 <input type="submit" id="IniciarSesion" value="Iniciar Sesion" name="IniciarSesion">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Idioma</td>
+                            <td>
+                                <select name="idioma" class="idioma">
+                                    <option value="es">Español</option>
+                                    <option value="pt">Portugués</option>
+                                    <option value="gb">Inglés</option>
+                                </select>
                             </td>
                         </tr>
                     </table>

@@ -2,12 +2,12 @@
 session_start();
 //Comprobación de si ha pasado por el login
 if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
-    header('Location: ./login.php');
+    header('Location: login.php');
     exit;
 }
 //Comprobación de si ha pulsado el botón de volver
 if (isset($_REQUEST['Volver'])) {
-    header('Location: ./programa.php');
+    header('Location: programa.php');
     die();
 }
 ?>
@@ -16,7 +16,7 @@ if (isset($_REQUEST['Volver'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 07-12-2022.
+        Fecha-última-revisión: 11-12-2022.
     -->
     <head>
         <meta charset="UTF-8">

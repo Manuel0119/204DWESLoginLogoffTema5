@@ -2,19 +2,20 @@
 session_start();
 //Comprobación de si ha pasado por el login
 if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
-    header('Location: ./login.php');
+    header('Location: login.php');
     exit;
 }
 //Comprobar si se ha pulsado el botón de salir
 if (isset($_REQUEST['Salir'])) {
-    $_SESSION['user204DWESLoginLogoffTema5']=null;
-    header('Location: ./login.php');
+    $_SESSION['user204DWESLoginLogoffTema5'] = null;
+    $_SESSION['fechaHoraUltimaConexionAnterior'] = null;
+    header('Location: login.php');
     session_destroy();
     exit;
 }
 //Comprobar si se ha pulsado el botón de detalle
 if (isset($_REQUEST['Detalle'])) {
-    header('Location: ./detalle.php');
+    header('Location: detalle.php');
     exit;
 }
 ?>
@@ -23,7 +24,7 @@ if (isset($_REQUEST['Detalle'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 07-12-2022.
+        Fecha-última-revisión: 11-12-2022.
     -->
     <head>
         <meta charset="UTF-8">
@@ -69,6 +70,27 @@ if (isset($_REQUEST['Detalle'])) {
             </table>
             <form name="ejercicio21" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <table class="formulario">
+                    <tr>
+                        <td>
+                            <?php
+                            //Damos la bienvenida al usuario
+                            switch ($_COOKIE['idioma']) {
+                                case "es":
+                                    echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                    break;
+                                case "pt":
+                                    echo"Bem-vido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                    break;
+                                case "gb":
+                                    echo"Welcome" . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                    break;
+                                default:
+                                    echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                    break;
+                            }
+                            ?>
+                        </td>
+                    </tr>
                     <tr>
                         <td colspan="2"><input type="submit" id="Detalle" value="Detalle" name="Detalle"></td>
                     </tr>
