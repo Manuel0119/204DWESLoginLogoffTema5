@@ -62,7 +62,7 @@ if ($entradaOk) {
     } finally {
         unset($miDB);
     }
-    setcookie('idioma', $_REQUEST['idioma'], time()+1800);
+    setcookie('idioma', $_REQUEST['idioma'], time() + 1800);
     $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
     header('Location: programa.php');
     die();
@@ -131,14 +131,15 @@ if ($entradaOk) {
                     </table>
                 </form>
             </div>
-        <?php } ?>
-        <footer>
-            <div><a href="../../204DWESProyectoDWES/indexProyectoDWES.php"><img style="padding: 0em 1em;" src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>
-            2022-23 Manuel Martín Alonso. ©Todos los derechos reservados.
-            <a href="https://github.com/Manuel0119/204DWESLoginLogoffTema5" target="_blank"><img src="../webroot/github-logo.png" alt="github" id="g"></a>
-            <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png" alt="curriculum" id="curricu"></a>
-            <a href="../../204DWESProyectoDWES/indexProyectoDWES.php"><img src="../webroot/volver.png" alt="volver" class="volver"/></a>
-        </footer>
-    </body>
-</html>
+
+            <footer>
+                <div><a href="../../204DWESProyectoDWES/indexProyectoDWES.php"><img style="padding: 0em 1em;" src="../webroot/logo_propio.png" alt="logo" id="logo"></a></div>
+                2022-23 Manuel Martín Alonso. ©Todos los derechos reservados.
+                <a href="https://github.com/Manuel0119/204DWESLoginLogoffTema5" target="_blank"><img src="../webroot/github-logo.png" alt="github" id="g"></a>
+                <a href="doc/CV - Manuel Martín Alonso.pdf" target="_blank"><img src="../webroot/curriculum-logo.png" alt="curriculum" id="curricu"></a>
+                <a href="../../204DWESProyectoDWES/indexProyectoDWES.php"><img src="../webroot/volver.png" alt="volver" class="volver"/></a>
+            </footer>
+        </body>
+    </html>
+<?php } ?>
 
