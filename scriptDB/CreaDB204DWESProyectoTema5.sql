@@ -19,7 +19,7 @@ create table if not exists T01_Usuario(
     T01_CodUsuario varchar(8) primary key not null,
     T01_Password varchar(255) not null,
     T01_DescUsuario varchar(255) not null,
-    T01_NumConexiones int not null default 1,
+    T01_NumConexiones int not null default 0,
     T01_FechaHoraUltimaConexion datetime not null,
     T01_Perfil enum('administrador','usuario') default 'usuario',
     T01_ImagenUsuario MEDIUMBLOB null

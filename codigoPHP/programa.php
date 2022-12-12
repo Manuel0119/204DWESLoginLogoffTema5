@@ -82,7 +82,7 @@ if (isset($_REQUEST['Detalle'])) {
                                 }
                                 break;
                             case "gb":
-                                echo"Welcome" . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                echo"Welcome " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
                                 echo "This is the " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " time you connect" . "<br/>";
                                 if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
                                     echo "You were last online on " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
