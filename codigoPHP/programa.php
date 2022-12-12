@@ -16,6 +16,7 @@ if (isset($_REQUEST['Salir'])) {
     $_SESSION['fechaHoraUltimaConexionAnterior'] = null;
     header('Location: login.php');
     session_destroy();
+    ob_end_clean();
     exit;
 }
 //Comprobar si se ha pulsado el botón de detalle
