@@ -1,4 +1,10 @@
 <?php
+/**
+* @author: Manuel Martín Alonso
+* @version: 1.0
+* @since 12-12-2022
+*/
+ob_start();
 require_once '../core/221024ValidacionFormularios.php';
 require_once '../conf/confDB.php';
 $entradaOk = true;
@@ -73,7 +79,7 @@ if ($entradaOk) {
         <!--
             Autor: Manuel Martín Alonso.
             Utilidad: Este programa consiste en crear un login.
-            Fecha-última-revisión: 11-12-2022.
+            Fecha-última-revisión: 12-12-2022.
         -->
         <head>
             <meta charset="UTF-8">

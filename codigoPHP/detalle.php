@@ -1,4 +1,9 @@
 <?php
+/**
+* @author: Manuel Martín Alonso
+* @version: 1.0
+* @since 12-12-2022
+*/
 session_start();
 //Comprobación de si ha pasado por el login
 if (is_null($_SESSION['user204DWESLoginLogoffTema5'])) {
@@ -16,7 +21,7 @@ if (isset($_REQUEST['Volver'])) {
     <!--
         Autor: Manuel Martín Alonso.
         Utilidad: Este programa consiste en crear un login.
-        Fecha-última-revisión: 11-12-2022.
+        Fecha-última-revisión: 12-12-2022.
     -->
     <head>
         <meta charset="UTF-8">
