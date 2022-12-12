@@ -44,7 +44,7 @@ if (isset($_REQUEST['Detalle'])) {
                 justify-content: center;
             }
             .codigophp {
-                left: 45%;
+                left: 40%;
             }
             .volver{
                 height: 35px;
@@ -58,39 +58,54 @@ if (isset($_REQUEST['Detalle'])) {
         </div>
         <div class="codigophp">
             <table>
-                <?php
-                echo "Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario . "<br/>";
-                echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
-                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
-                    echo "Usted se conectó por última vez " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion;
-                } else {
-                    
-                }
-                ?>
+                <tr>
+                    <td>
+                        <?php
+                        //Damos la bienvenida al usuario
+                        switch ($_COOKIE['idioma']) {
+                            case "es":
+                                echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
+                                echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
+                                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
+                                    echo "Usted se conectó por última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                } else {
+                                    
+                                }
+                                break;
+                            case "pt":
+                                echo"Bem-vido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
+                                echo "Esta é a " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que você se conecta" . "<br/>";
+                                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
+                                    echo "Você se conectou pela última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                } else {
+                                    
+                                }
+                                break;
+                            case "gb":
+                                echo"Welcome" . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                echo "This is the " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " time you connect" . "<br/>";
+                                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
+                                    echo "You were last online on " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                } else {
+                                    
+                                }
+                                break;
+                            default:
+                                echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
+                                echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
+                                if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
+                                    echo "Usted se conectó por última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                } else {
+                                    
+                                }
+                                break;
+                        }
+                        ?>
+                    </td>
+                </tr>
             </table>
             <form name="ejercicio21" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                 <table class="formulario">
-                    <tr>
-                        <td>
-                            <?php
-                            //Damos la bienvenida al usuario
-                            switch ($_COOKIE['idioma']) {
-                                case "es":
-                                    echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
-                                    break;
-                                case "pt":
-                                    echo"Bem-vido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
-                                    break;
-                                case "gb":
-                                    echo"Welcome" . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
-                                    break;
-                                default:
-                                    echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
-                                    break;
-                            }
-                            ?>
-                        </td>
-                    </tr>
                     <tr>
                         <td colspan="2"><input type="submit" id="Detalle" value="Detalle" name="Detalle"></td>
                     </tr>

@@ -44,6 +44,7 @@ try {
 }
 if ($entradaOk) {
     session_start();
+    $miDB = new PDO(DSN, USER, PASSWORD);
     $_SESSION['fechaHoraUltimaConexionAnterior'] = $oConsultaPorCodigo->T01_FechaHoraUltimaConexion;
     //Actualización del número de conexiones
     try {
@@ -61,8 +62,7 @@ if ($entradaOk) {
     } finally {
         unset($miDB);
     }
-    $fechaActual = new DateTime('now');
-    setcookie('idioma', $_REQUEST['idioma'], $fechaActual->add(new DateInterval("PT30M")));
+    setcookie('idioma', $_REQUEST['idioma'], time()+1800);
     $_SESSION['user204DWESLoginLogoffTema5'] = $oConsultaPorCodigo;
     header('Location: programa.php');
     die();
@@ -114,11 +114,6 @@ if ($entradaOk) {
                             <td><input type="password" name="password" class="entradadatos" value="<?php echo $_REQUEST['password'] ?? ''; ?>"/></td>
                         </tr>
                         <tr>
-                            <td style="text-align: center" colspan="3">
-                                <input type="submit" id="IniciarSesion" value="Iniciar Sesion" name="IniciarSesion">
-                            </td>
-                        </tr>
-                        <tr>
                             <td>Idioma</td>
                             <td>
                                 <select name="idioma" class="idioma">
@@ -126,6 +121,11 @@ if ($entradaOk) {
                                     <option value="pt">Portugués</option>
                                     <option value="gb">Inglés</option>
                                 </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center" colspan="3">
+                                <input type="submit" id="IniciarSesion" value="Iniciar Sesion" name="IniciarSesion">
                             </td>
                         </tr>
                     </table>
