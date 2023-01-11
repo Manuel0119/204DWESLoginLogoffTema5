@@ -2,7 +2,7 @@
 /**
 * @author: Manuel Martín Alonso
 * @version: 1.0
-* @since 12-12-2022
+* @since 11-01-2023
 */
 session_start();
 //Comprobación de si ha pasado por el login
@@ -73,7 +73,7 @@ if (isset($_REQUEST['Detalle'])) {
                                 echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
                                 echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
                                 if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
-                                    echo "Usted se conectó por última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                    echo "Usted se conectó por última vez " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion."<br>";
                                 } else {
                                     
                                 }
@@ -82,7 +82,7 @@ if (isset($_REQUEST['Detalle'])) {
                                 echo"Bem-vido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
                                 echo "Esta é a " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que você se conecta" . "<br/>";
                                 if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
-                                    echo "Você se conectou pela última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                    echo "Você se conectou pela última vez " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion."<br>";
                                 } else {
                                     
                                 }
@@ -91,7 +91,7 @@ if (isset($_REQUEST['Detalle'])) {
                                 echo"Welcome " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario."<br>";
                                 echo "This is the " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " time you connect" . "<br/>";
                                 if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
-                                    echo "You were last online on " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                    echo "You were last online on " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion."<br>";
                                 } else {
                                     
                                 }
@@ -100,7 +100,7 @@ if (isset($_REQUEST['Detalle'])) {
                                 echo"Bienvenido " . $_SESSION['user204DWESLoginLogoffTema5']->T01_DescUsuario;
                                 echo "Esta es la " . $_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones . " vez que te conectas" . "<br/>";
                                 if (($_SESSION['user204DWESLoginLogoffTema5']->T01_NumConexiones) > 1) {
-                                    echo "Usted se conectó por última vez " . $_SESSION['fechaHoraUltimaConexionAnterior']."<br>";
+                                    echo "Usted se conectó por última vez " . $_SESSION['user204DWESLoginLogoffTema5']->T01_FechaHoraUltimaConexion."<br>";
                                 } else {
                                     
                                 }
